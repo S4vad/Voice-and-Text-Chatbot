@@ -7,7 +7,7 @@ export default function ModeToggle() {
   return (
     <div
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="relative flex h-5 w-10 cursor-pointer items-center rounded-full bg-gray-200 p-1 transition-colors dark:bg-gray-700"
+      className="relative flex h-5 w-10 cursor-pointer items-center rounded-full bg-gray-200 p-1 transition-colors dark:bg-gray-600"
     >
       <div
         className={`absolute h-4 w-4 rounded-full bg-white shadow-md transition-all dark:bg-[#1E2738] ${

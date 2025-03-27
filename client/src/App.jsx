@@ -1,17 +1,21 @@
 import "./App.css";
-import Chatbot from "./pages/Chatbot";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Nav from "./pages/Nav";
+
+import { Routes, Route } from "react-router-dom";
+
+import SignupPage from "./pages/userSignup";
+import { AuthProvider } from "../context/AuthContext";
+import LoginPage from "./pages/Login";
+import Layout from "./pages/Layout";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-primary flex flex-col md:flex-row ">
-      <Nav />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Chatbot />} />
-        </Routes>
-      </Router>
-    </div>
+    <AuthProvider>
+      <Routes>
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
+
+        <Route path="/" element={<Layout />} />
+      </Routes>
+    </AuthProvider>
   );
 }
