@@ -70,31 +70,31 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-sm">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-sm dark:bg-gray-800">
         <div className="mb-8 flex"></div>
         <form onSubmit={handleSubmit} className="mb-4 space-y-4">
           <div>
-            <label className="mb-2 block text-gray-700">Email</label>
+            <label className="mb-2 block text-gray-700 dark:text-white">Email</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
               placeholder="Email"
-              className="w-full rounded-lg border bg-white px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-lg border dark:text-black bg-white px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-indigo-500 dark:placeholder:text-gray-400"
               required
             />
           </div>
           <div>
-            <label className="mb-2 block text-gray-700">Password</label>
+            <label className="mb-2 block text-gray-700 dark:text-white">Password</label>
             <input
               type="password"
               name="password"
               placeholder="Password"
               value={formData.password}
               onChange={handleInputChange}
-              className="w-full rounded-lg border bg-white px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-lg border dark:text-black bg-white px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-indigo-500 dark:placeholder:text-gray-400"
               required
             />
           </div>
@@ -105,9 +105,9 @@ export default function LoginPage() {
           >
             Log in
           </button>
-          <div className="text-center">
+          <div className="text-center dark:text-white">
             Don't have an account?{" "}
-            <a href="/signup" className="text-indigo-600">
+            <a href="/signup" className="text-indigo-600 dark:text-blue-400">
               Signup
             </a>
           </div>

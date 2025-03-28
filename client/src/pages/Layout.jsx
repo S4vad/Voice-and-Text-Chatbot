@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
-import Nav from './Nav';
-import ChatBot from './Chatbot';
+import React from "react";
+import Nav from "./Nav";
+import ChatBot from "./Chatbot";
 
 export default function Layout() {
-  const [activeChatId, setActiveChatId] = useState(null);
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-primary flex">
-  
-      <Nav activeChatId={activeChatId} setActiveChatId={setActiveChatId} />
+      <Nav />
 
       <div className="flex-1">
-        <ChatBot activeChatId={activeChatId} />
+        <ChatBot />
       </div>
     </div>
   );

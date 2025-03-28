@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import userModel from "../models/userSchema.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import Chat from "../models/Chat.js";
+import {Chat} from "../models/Chat.js";
 
 dotenv.config();
 
@@ -25,7 +25,7 @@ export const userChat = async (req, res) => {
     res.json({ botReply });
   } catch (error) {
     console.error("Error:", error?.response?.data || error.message);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error?.response?.data || error.message });
   }
 };
 
@@ -53,7 +53,7 @@ export async function userSignup(req, res) {
     );
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Set to true in production
+      secure: process.env.NODE_ENV === "production", 
       sameSite: "lax",
     });
 
@@ -120,57 +120,52 @@ export async function userLogin(req, res) {
   }
 }
 
+
+
 export async function createChat(req, res) {
-  const { userId, title } = req.body;
-
   try {
-    const newChat = new Chat({ userId, title, messages: [] });
+    const { userId, question, answer } = req.body;
+
+    // Validate input
+    if (!userId || !question || !answer) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const newChat = new Chat({
+      userId,
+      question,
+      answer
+    });
+
     await newChat.save();
-    res.status(201).json({ chatId: newChat._id, title });
+    res.status(201).json({ message: "Chat saved successfully", chat: newChat });
+
   } catch (error) {
-    res.status(500).json({ error: "Failed to create chat" });
+    console.error("Error saving chat:", error);
+    res.status(500).json({ error: "Failed to save chat", details: error.message });
   }
 }
 
-export async function addChat(req, res) {
-  const { chatId } = req.params;
-  const { userMessage } = req.body;
-
+export async function getChats(req, res) {
   try {
-    const chat = await Chat.findById(chatId);
-    if (!chat) return res.status(404).json({ error: "Chat not found" });
+    const { userId } = req.query;
 
-    const botReply = `Bot response to: ${userMessage}`;
+    if (!userId) {
+      return res.status(400).json({ error: "User ID is required" });
+    }
 
-    chat.messages.push({ sender: "user", content: userMessage });
-    chat.messages.push({ sender: "bot", content: botReply });
+    const chats = await Chat.find({ userId }).sort({ createdAt: -1 });
+    
+    // Transform the data to match the frontend format
+    const formattedChats = chats.flatMap(chat => [
+      { content: chat.question, sender: "user" },
+      { content: chat.answer, sender: "bot" }
+    ]);
 
-    await chat.save();
-    res.json({ botReply });
+    res.status(200).json(formattedChats);
+
   } catch (error) {
-    res.status(500).json({ error: "Error saving chat" });
-  }
-}
-
-
-export  async function getChats(req, res) {
-  try {
-    const chats = await Chat.find({ userId: req.params.userId }).select("title");
-    res.json(chats);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch chats" });
-  }
-  
-}
-
-
-export  async function getSingleChats(req, res) {
-  try {
-    const chat = await Chat.findById(req.params.chatId);
-    if (!chat) return res.status(404).json({ error: "Chat not found" });
-
-    res.json(chat);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to load chat history" });
+    console.error("Error fetching chats:", error);
+    res.status(500).json({ error: "Failed to fetch chats", details: error.message });
   }
 }

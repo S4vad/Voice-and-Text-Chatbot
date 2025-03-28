@@ -70,44 +70,44 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-sm">
+    <div className="flex min-h-screen items-center justify-center dark:bg-gray-900 bg-gray-50">
+      <div className="w-full max-w-md rounded-xl dark:bg-gray-800  bg-white p-8 shadow-sm">
         <div className="mb-8 flex"></div>
         <form onSubmit={handleSubmit} className="mb-4 space-y-4">
           <div>
-            <label className="mb-2 block text-gray-700">Name</label>
+            <label className="mb-2 block text-gray-700 dark:text-white">Name</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className="w-full rounded-lg border bg-white px-4 py-2 focus:border focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-lg border dark:text-black bg-white px-4 py-2 focus:border focus:ring-2 focus:ring-indigo-500 dark:placeholder:text-gray-400"
               placeholder="Name"
               required
             />
           </div>
 
           <div>
-            <label className="mb-2 block text-gray-700">Email</label>
+            <label className="mb-2 block text-gray-700 dark:text-white">Email</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
               placeholder="Email"
-              className="w-full rounded-lg border bg-white px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-lg border dark:text-black bg-white px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-indigo-500 dark:placeholder:text-gray-400"
               required
             />
           </div>
           <div>
-            <label className="mb-2 block text-gray-700">Password</label>
+            <label className="mb-2 block text-gray-700 dark:text-white ">Password</label>
             <input
               type="password"
               name="password"
               placeholder="Password"
               value={formData.password}
               onChange={handleInputChange}
-              className="w-full rounded-lg border bg-white px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-indigo-500"
+              className="w-full rounded-lg border dark:text-black bg-white px-4 py-2 focus:border-transparent focus:ring-2 focus:ring-indigo-500 dark:placeholder:text-gray-400"
               required
             />
           </div>
@@ -118,9 +118,9 @@ export default function SignupPage() {
           >
             Create Account
           </button>
-          <div className="text-center">
+          <div className="text-center dark:text-white">
             already have an account?
-            <a href="/login" className="text-indigo-600 ml-1">
+            <a href="/login" className="text-indigo-600 dark:text-blue-400 ml-1">
               Login
             </a>
           </div>
