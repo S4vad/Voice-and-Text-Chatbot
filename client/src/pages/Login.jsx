@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import { toast } from "react-hot-toast";
 
 export default function LoginPage() {
@@ -29,7 +29,7 @@ export default function LoginPage() {
         { withCredentials: true }
       );
 
-      setFormData({  email: "", password: "" });
+      setFormData({ email: "", password: "" });
 
       toast.success(
         <span className="text-green-400">Login Successful !</span>,
@@ -74,8 +74,6 @@ export default function LoginPage() {
       <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-sm">
         <div className="mb-8 flex"></div>
         <form onSubmit={handleSubmit} className="mb-4 space-y-4">
-
-
           <div>
             <label className="mb-2 block text-gray-700">Email</label>
             <input
@@ -107,7 +105,12 @@ export default function LoginPage() {
           >
             Log in
           </button>
-          <div className="text-center">Don't have an account? <a href="/signup" className="text-indigo-600">Signup</a></div>
+          <div className="text-center">
+            Don't have an account?{" "}
+            <a href="/signup" className="text-indigo-600">
+              Signup
+            </a>
+          </div>
         </form>
       </div>
     </div>

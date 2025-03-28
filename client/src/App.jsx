@@ -3,7 +3,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
 import SignupPage from "./pages/userSignup";
-import { AuthProvider } from "../context/AuthContext";
+import { AuthProvider } from "@/context/AuthContext";
 import LoginPage from "./pages/Login";
 import Layout from "./pages/Layout";
 

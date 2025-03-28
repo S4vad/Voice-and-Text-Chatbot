@@ -174,7 +174,7 @@ export default function Chatbot() {
             {text || (isLoading ? "Listening..." : "Press the mic to speak...")}
           </div>
           <button
-            className="p-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition disabled:opacity-50"
+            className="p-3 bg-blue-500 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition disabled:opacity-50"
             onClick={startListening}
             disabled={isLoading}
           >

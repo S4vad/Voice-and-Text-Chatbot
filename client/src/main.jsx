@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "./darkmode/ThemeProvider.jsx";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
-import { AuthProvider } from "../context/AuthContext.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 
