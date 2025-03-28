@@ -129,7 +129,7 @@ export default function Chatbot() {
       setIsLoading(false);
     }
   };
-
+ //for formate response
   const formatResponse = (text) => {
     let formatted = text;
     formatted = formatted.replace(/\n/g, "\n\n");
@@ -199,13 +199,16 @@ export default function Chatbot() {
 
   return (
     <main className="w-full h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+ 
+
+     
       <div
         ref={messagesContainerRef}
         onScroll={handleScroll}
-        className="flex-1 overflow-y-auto p-4 pb-24"
+        className="flex-1 overflow-y-auto p-4 pb-24 md:pb-32"
       >
         {messages.length === 0 ? (
-          <div className="h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
+          <div className="h-full flex items-center justify-center text-gray-500 dark:text-gray-400 px-4 text-center">
             {user?.id
               ? "Start speaking by pressing the microphone button"
               : "Please login to start chatting"}
@@ -215,10 +218,10 @@ export default function Chatbot() {
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`p-4 rounded-lg ${
+                className={`p-3 md:p-4 rounded-lg ${
                   msg.sender === "user"
-                    ? "bg-blue-500 text-white ml-auto max-w-[80%]"
-                    : "bg-gray-200 dark:bg-gray-700 text-black dark:text-white mr-auto max-w-[80%]"
+                    ? "bg-blue-500 text-white ml-auto max-w-[90%] md:max-w-[80%]"
+                    : "bg-gray-200 dark:bg-gray-700 text-black dark:text-white mr-auto max-w-[90%] md:max-w-[80%]"
                 }`}
               >
                 {msg.sender === "bot" && msg.isLoading ? (
@@ -227,67 +230,67 @@ export default function Chatbot() {
                     {msg.content}
                   </div>
                 ) : msg.sender === "bot" ? (
-                  <div className="prose dark:prose-invert prose-sm max-w-none ">
+                  <div className="prose dark:prose-invert prose-sm max-w-none">
                     <ReactMarkdown
                       remarkPlugins={[remarkGfm]}
                       components={{
                         p: ({ ...props }) => (
                           <p
-                            className="mb-2 text-xs leading-loose tracking-wide"
+                            className="mb-2 text-xs md:text-sm leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
                         ul: ({ ...props }) => (
                           <ul
-                            className="list-disc pl-5 mb-2 text-xs leading-loose tracking-wide"
+                            className="list-disc pl-5 mb-2 text-xs md:text-sm leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
                         ol: ({ ...props }) => (
                           <ol
-                            className="list-decimal pl-5 mb-2 text-xs leading-loose tracking-wide "
+                            className="list-decimal pl-5 mb-2 text-xs md:text-sm leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
                         li: ({ ...props }) => (
                           <li
-                            className="mb-1 text-xs leading-loose tracking-wide"
+                            className="mb-1 text-xs md:text-sm leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
                         h1: ({ ...props }) => (
                           <h1
-                            className="text-xl font-bold my-2 leading-loose tracking-wide "
+                            className="text-lg md:text-xl font-bold my-2 leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
                         h2: ({ ...props }) => (
                           <h2
-                            className="text-lg font-bold my-2 leading-loose tracking-wide"
+                            className="text-md md:text-lg font-bold my-2 leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
                         h3: ({ ...props }) => (
                           <h3
-                            className="text-md font-bold my-2 leading-loose tracking-wide"
+                            className="text-sm md:text-md font-bold my-2 leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
                         code: ({ ...props }) => (
                           <code
-                            className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5 text-xs leading-loose tracking-wide"
+                            className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5 text-xs md:text-sm leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
                         pre: ({ ...props }) => (
                           <pre
-                            className="bg-gray-100 dark:bg-gray-800 rounded p-2 my-2 overflow-x-auto text-xs leading-loose tracking-wide"
+                            className="bg-gray-100 dark:bg-gray-800 rounded p-2 my-2 overflow-x-auto text-xs md:text-sm leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
                         blockquote: ({ ...props }) => (
                           <blockquote
-                            className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-2 text-xs leading-loose tracking-wide"
+                            className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-2 text-xs md:text-sm leading-relaxed md:leading-loose tracking-wide"
                             {...props}
                           />
                         ),
@@ -297,7 +300,7 @@ export default function Chatbot() {
                     </ReactMarkdown>
                   </div>
                 ) : (
-                  <div className="text-sm leading-loose tracking-wide">
+                  <div className="text-xs md:text-sm leading-relaxed md:leading-loose tracking-wide">
                     {msg.content}
                   </div>
                 )}
@@ -308,26 +311,31 @@ export default function Chatbot() {
         <div ref={messagesEndRef} />
       </div>
 
+      {/* Input */}
       <div className="w-full bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 fixed bottom-0">
         <div className="max-w-3xl mx-auto flex items-center gap-2">
-          <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-3 text-gray-800 dark:text-gray-200 min-h-[56px] flex items-center">
+          <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded-lg px-3 py-2 md:px-4 md:py-3 text-gray-800 dark:text-gray-200 min-h-[48px] md:min-h-[56px] flex items-center text-sm md:text-base">
             {text || (isLoading ? "Listening..." : "Press the mic to speak...")}
           </div>
-          <button
-            className="p-3 bg-blue-500 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition "
-            onClick={startListening}
-            disabled={isLoading || !user?.id}
-          >
-            <MdKeyboardVoice size={20} />
-          </button>
-          {isSpeaking && (
+          <div className="flex items-center gap-2">
             <button
-              className="p-3 bg-red-600 hover:bg-red-700 text-white rounded-full transition"
-              onClick={stopSpeaking}
+              className="p-2 md:p-3 bg-blue-500 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-full transition"
+              onClick={startListening}
+              disabled={isLoading || !user?.id}
+              aria-label="Start voice input"
             >
-              <ImCancelCircle size={18} />
+              <MdKeyboardVoice size={20} />
             </button>
-          )}
+            {isSpeaking && (
+              <button
+                className="p-2 md:p-3 bg-red-600 hover:bg-red-700 text-white rounded-full transition"
+                onClick={stopSpeaking}
+                aria-label="Stop speaking"
+              >
+                <ImCancelCircle size={18} />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </main>
