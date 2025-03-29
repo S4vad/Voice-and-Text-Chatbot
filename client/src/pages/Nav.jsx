@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ModeToggle from "../darkmode/ModeToggle";
 import { useNavigate } from "react-router-dom";
-import { getUserFromStorage } from "../../utils/localStorage.JS";
-import { FiPlus, FiMessageSquare } from "react-icons/fi";
+import { getUserFromStorage } from "../../utils/localStorage.js";
+
 
 import {
   Avatar,

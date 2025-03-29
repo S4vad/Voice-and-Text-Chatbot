@@ -2,7 +2,7 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 
-import SignupPage from "./pages/userSignup";
+import SignupPage from "./pages/UserSignup"
 import { AuthProvider } from "@/context/AuthContext";
 import LoginPage from "./pages/Login";
 import Layout from "./pages/Layout";
