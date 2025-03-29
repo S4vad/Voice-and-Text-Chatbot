@@ -75,7 +75,9 @@ export default function SignupPage() {
         <div className="mb-8 flex"></div>
         <form onSubmit={handleSubmit} className="mb-4 space-y-4">
           <div>
-            <label className="mb-2 block text-gray-700 dark:text-white">Name</label>
+            <label className="mb-2 block text-gray-700 dark:text-white">
+              Name
+            </label>
             <input
               type="text"
               name="name"
@@ -88,7 +90,9 @@ export default function SignupPage() {
           </div>
 
           <div>
-            <label className="mb-2 block text-gray-700 dark:text-white">Email</label>
+            <label className="mb-2 block text-gray-700 dark:text-white">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -100,7 +104,9 @@ export default function SignupPage() {
             />
           </div>
           <div>
-            <label className="mb-2 block text-gray-700 dark:text-white ">Password</label>
+            <label className="mb-2 block text-gray-700 dark:text-white ">
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -120,7 +126,10 @@ export default function SignupPage() {
           </button>
           <div className="text-center dark:text-white">
             already have an account?
-            <a href="/login" className="text-indigo-600 dark:text-blue-400 ml-1">
+            <a
+              href="/login"
+              className="text-indigo-600 dark:text-blue-400 ml-1"
+            >
               Login
             </a>
           </div>

@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import userModel from "../models/userSchema.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import {Chat} from "../models/Chat.js";
+import chatModel from "../models/chatSchema.js";
 
 dotenv.config();
 
@@ -126,12 +126,11 @@ export async function createChat(req, res) {
   try {
     const { userId, question, answer } = req.body;
 
-    // Validate input
     if (!userId || !question || !answer) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    const newChat = new Chat({
+    const newChat = new chatModel({
       userId,
       question,
       answer
@@ -154,9 +153,8 @@ export async function getChats(req, res) {
       return res.status(400).json({ error: "User ID is required" });
     }
 
-    const chats = await Chat.find({ userId }).sort({ createdAt: -1 });
+    const chats = await chatModel.find({ userId }).sort({ createdAt: -1 });
     
-    // Transform the data to match the frontend format
     const formattedChats = chats.flatMap(chat => [
       { content: chat.question, sender: "user" },
       { content: chat.answer, sender: "bot" }

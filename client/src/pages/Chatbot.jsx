@@ -42,7 +42,7 @@ export default function Chatbot() {
       if (!user?.id) return;
 
       try {
-        const { data } = await axios.get("http://localhost:5000/getChat", {
+        const { data } = await axios.get("/getChat", {
           params: { userId: user.id },
         });
         setMessages(data || []);
@@ -59,6 +59,7 @@ export default function Chatbot() {
     }
   };
 
+  // Handle scroll events
   const handleScroll = () => {
     const container = messagesContainerRef.current;
     const threshold = 100;
@@ -67,6 +68,7 @@ export default function Chatbot() {
       threshold;
   };
 
+  // Reset component state
   const resetState = () => {
     if (typingIntervalRef.current) clearInterval(typingIntervalRef.current);
     stopSpeaking();
@@ -78,12 +80,14 @@ export default function Chatbot() {
     recognition.start();
   };
 
+  // Voice recognition result handler
   recognition.onresult = (event) => {
     const userText = event.results[0][0].transcript;
     setText(userText);
     sendMessage(userText);
   };
 
+  //recognition error handler
   recognition.onerror = (event) => {
     console.error("Speech recognition error", event.error);
     setIsLoading(false);
@@ -100,7 +104,7 @@ export default function Chatbot() {
     addMessage("Generating response...", "bot", true, botMessageId);
 
     try {
-      const { data } = await axios.post("http://localhost:5000/chat", {
+      const { data } = await axios.post("/chat", {
         userMessage: message,
         format: "markdown",
       });
@@ -115,7 +119,7 @@ export default function Chatbot() {
 
       if (user?.id) {
         await axios
-          .post("http://localhost:5000/createChat", {
+          .post("/createChat", {
             userId: user.id,
             question: message,
             answer: data.botReply,
@@ -129,7 +133,8 @@ export default function Chatbot() {
       setIsLoading(false);
     }
   };
- //for formate response
+
+  // Format response text for display
   const formatResponse = (text) => {
     let formatted = text;
     formatted = formatted.replace(/\n/g, "\n\n");
@@ -142,6 +147,7 @@ export default function Chatbot() {
     setMessages((prev) => [...prev, { content, sender, isLoading, id }]);
   };
 
+  // Replace existing message
   const replaceMessage = (id, newContent) => {
     setMessages((prev) =>
       prev.map((msg) =>
@@ -181,6 +187,7 @@ export default function Chatbot() {
     }, 15);
   };
 
+  // Convert text to speech
   const speakResponse = (message) => {
     stopSpeaking();
     const utterance = new SpeechSynthesisUtterance(message);
@@ -199,9 +206,6 @@ export default function Chatbot() {
 
   return (
     <main className="w-full h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
- 
-
-     
       <div
         ref={messagesContainerRef}
         onScroll={handleScroll}

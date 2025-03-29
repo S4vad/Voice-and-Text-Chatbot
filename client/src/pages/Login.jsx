@@ -75,7 +75,9 @@ export default function LoginPage() {
         <div className="mb-8 flex"></div>
         <form onSubmit={handleSubmit} className="mb-4 space-y-4">
           <div>
-            <label className="mb-2 block text-gray-700 dark:text-white">Email</label>
+            <label className="mb-2 block text-gray-700 dark:text-white">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -87,7 +89,9 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <label className="mb-2 block text-gray-700 dark:text-white">Password</label>
+            <label className="mb-2 block text-gray-700 dark:text-white">
+              Password
+            </label>
             <input
               type="password"
               name="password"
